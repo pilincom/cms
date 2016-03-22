@@ -31,13 +31,13 @@ def check_service(service_name):
 		subprocess.call("service '%s' restart" % service_name, shell = True)
 
 def check_config(config_name):
+	"""Verifies if config file exists"""
 	if os.path.exists(config_name) == True:
-        print "Config file is present"
-    else:
-    	print "Config file is missing."
-
-
+		print "Config file is present"
+	else:
+		print "Config file is missing."
 
 
 check_package(package_name)
 check_service(service_name)
+check_config(config_name)
