@@ -10,6 +10,10 @@ parser.read('config.cfg')
 and verifies if item exist. If it does it takes takes action against it."""
 
 for section in parser.sections():
+	print '-' * len(section)
+	print section
+	print '-' * len(section)
+
         if parser.has_option(section, 'package_name'):
                 check_package(parser.get(section,'package_name'))
 
@@ -18,3 +22,4 @@ for section in parser.sections():
 
         if parser.has_option(section, 'config_source') and parser.has_option(section, 'config_path'):
                 check_config(parser.get(section,'config_path'),parser.get(section,'config_source'))
+	print ""
