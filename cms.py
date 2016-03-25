@@ -26,7 +26,7 @@ def check_config(config_name,config_source):
 	if os.path.exists(config_name) == True and  filecmp.cmp(config_source, config_name):
 		print "%s is present and content matches source" % config_name
 	else:
-		print "%s is missing, content is different from source. Re-installing..." % config_name
+		print "%s is missing or content is different from source. Re-installing..." % config_name
 		time.sleep(1)
 		subprocess.call("cp '%s' '%s'" % (config_source, config_name), shell = True)
 
