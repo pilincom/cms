@@ -4,6 +4,8 @@ import subprocess
 import os
 import time
 import filecmp
+import pwd
+import stat
 
 DEVNULL = open(os.devnull, 'w')
 
@@ -39,3 +41,20 @@ def check_service(service_name):
 		print "Service %s is not running. Attempting to restart..." % service_name
 		time.sleep(1)
 		subprocess.call("service '%s' restart" % service_name, shell = True)
+
+def config_stat(filename,owner,group,mode):
+        """Verifies and corrects file ownersip"""
+        if pwd.getpwuid(os.stat(filename).st_uid).pw_name == owner or pwd.getpwuid(os.stat(filename).st_gid).pw_name == group:
+                print "Ownership of %s is correct" % filename
+        else:
+                print "Ownershipof %s is incorrect. Fixing..." % filename
+                time.sleep(1)
+                os.chown(filename, pwd.getpwnam(owner).pw_uid, pwd.getpwnam(group).pw_gid)
+
+        """Verifies and corrects file permissions"""
+        if oct(os.stat(filename).st_mode)[-4:] == mode:
+                print "Permissions of %s are correct" % filename
+        else:
+                print "Permissions of %s are incorrect. Fixing" % filename
+                time.sleep(1)
+                os.chmod(filename,int(mode,8))
