@@ -6,18 +6,19 @@ import time
 import filecmp
 import pwd
 import stat
+import apt
 
 DEVNULL = open(os.devnull, 'w')
 
 def check_package(package_name):
 	"""Installs package if it's missing from the system"""
-	check = subprocess.call("dpkg-query -l '%s'" % package_name, stdout = DEVNULL, shell = True)
-	if check == 0:
-    		print "Package %s is installed" % package_name
+	cache = apt.Cache()
+	if cache[package_name].is_installed:
+		print "Package %s is installed" % package_name
 	else:
 		print "Package %s will be installed" % package_name
 		time.sleep(1)
-    		subprocess.call("apt-get install -y '%s'" % package_name, shell = True)
+    	subprocess.call("apt-get install -y '%s'" % package_name, shell = True)
 
 def check_config(config_name,config_source):
 	"""Verifies if config file exists and content matches source"""
