@@ -18,7 +18,7 @@ def check_package(package_name):
 	else:
 		print "Package %s will be installed" % package_name
 		time.sleep(1)
-    	subprocess.call("apt-get install -y '%s'" % package_name, shell = True)
+		subprocess.call("apt-get install -y '%s'" % package_name, shell = True)
 
 def check_config(config_name,config_source):
 	"""Verifies if config file exists and content matches source"""
