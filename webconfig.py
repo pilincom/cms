@@ -7,7 +7,7 @@ parser = ConfigParser.ConfigParser()
 parser.read('config/config.cfg')
 
 """Iterates over every section in the config file
-and verifies if item exist. If it does it takes takes action accordingly."""
+and verifies if item exist. If it does, it takes takes action accordingly."""
 
 for section in parser.sections():
         print '-' * len(section)

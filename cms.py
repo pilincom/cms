@@ -1,12 +1,6 @@
 #!/usr/bin/python
 
-import subprocess
-import os
-import time
-import filecmp
-import pwd
-import stat
-import apt
+import subprocess, os, time, filecmp, pwd, stat, apt
 
 DEVNULL = open(os.devnull, 'w')
 
@@ -26,7 +20,7 @@ def check_config(config_name,config_source):
 		print "%s is missing at the source location" % config_source
 		return
 
-	if os.path.exists(config_name) == True and  filecmp.cmp(config_source, config_name):
+	if os.path.exists(config_name) == True and filecmp.cmp(config_source, config_name):
 		print "%s is present and content matches source" % config_name
 	else:
 		print "%s is missing or content is different from source. Re-installing..." % config_name
