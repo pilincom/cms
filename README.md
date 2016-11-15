@@ -1,5 +1,4 @@
-# cms
-Content Management System
+# Content Management System
 
 There is a file in main directory called cms.py. It is a primitive configuration management system. 
 It has several functions: check if package is installed, checks if a config file is installed and content matches the source file and permissions and ownership are correct, checks if service is running. 
